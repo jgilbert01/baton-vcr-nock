@@ -1,0 +1,28 @@
+{
+  "name": "baton-vcr-nock",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "keywords": [
+    "test",
+    "testing",
+    "vcr",
+    "nock"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jgilbert01/baton-vcr-nock.git"
+  },
+  "scripts": {
+    "test": "DEBUG=nock.* mocha index.test.js"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "supertest": "^7.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "nock": "^13.5.4"
+  }
+}
