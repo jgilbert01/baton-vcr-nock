@@ -6,18 +6,16 @@ const { cloneDeepWith } = require('lodash');
 const REGEX = 'regex:'
 
 const prepareBodyRegex = (def) => {
-    console.log('prepareBodyRegex: ', def.body);
     if (!def.body) return;
 
     if (typeof def.body === 'string') {
         if (def.body.startsWith(REGEX)) {
             def.body = new RegExp(def.body.substring(REGEX.length));
-            console.log('REGEX: ', def.body);
         }
     } else {
         def.body = cloneDeepWith(def.body, (value) => {
             if (value && typeof value === 'string' && value.startsWith(REGEX)) {
-                return new RegExp(value.substring(REGEX.length - 1));
+                return new RegExp(value.substring(REGEX.length));
             } else {
                 return undefined;
             }
@@ -25,13 +23,11 @@ const prepareBodyRegex = (def) => {
     }
 };
 
-const vcr = ({ mode, opt, fixtures, fixtureName, prepareScope }) => {
+const vcr = ({ mode, fixtures, fixtureName, prepareScope, opt }) => {
     nock.restore();
     nock.recorder.clear();
     nock.cleanAll();
     nock.activate();
-
-    nock.emitter.on('no match', (req) => console.log('no match: ', req));
 
     const ctx = {
         mode: mode || process.env.REPLAY || 'replay',
