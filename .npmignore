@@ -1,2 +1,6 @@
 .editorconfig
 .npmignore
+.github
+fixtures
+*.tgz
+*.test.js
