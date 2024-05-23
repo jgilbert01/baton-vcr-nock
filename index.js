@@ -57,7 +57,7 @@ const vcr = ({ mode, fixtures, fixtureName, prepareScope, opt }) => {
 
     console.log(`Replay mode = ${ctx.mode}`);
 
-    if (mode === 'record') {
+    if (ctx.mode === 'record') {
         ctx.fixtureName = fixtureName || Date.now();
         ctx.fixture = path.join(ctx.fixtures, `${ctx.fixtureName}.json`);
 
@@ -71,7 +71,7 @@ const vcr = ({ mode, fixtures, fixtureName, prepareScope, opt }) => {
             },
             ...ctx.opt,
         });
-    } else if (mode === 'replay') {
+    } else if (ctx.mode === 'replay') {
         nock.disableNetConnect();
     } else {
         // mode is wild
